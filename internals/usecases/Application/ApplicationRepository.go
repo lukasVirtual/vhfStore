@@ -1,5 +1,12 @@
 package application
 
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
+
 type ApplicationInterface interface {
 	Download(string)
 	Install(string)
@@ -12,4 +19,42 @@ type ApplicationRepository struct {
 
 func New() *ApplicationRepository {
 	return &ApplicationRepository{}
+}
+
+func (a *ApplicationRepository) FetchCatalog() {
+	http.Get("http://127.0.0.1:3333/api/prepare")
+	resp, err := http.Get("http://127.0.0.1:8000/infos.json")
+	if err != nil {
+		//TODO Error Handling
+		log.Fatal(err)
+	}
+
+	data, err := os.ReadFile("catalog.json")
+	if err != nil {
+		//TODO Error Handling
+		log.Fatal(err)
+	}
+
+	log.Println(data, resp)
+
+}
+
+func (a *ApplicationRepository) Download(name string) {
+	resp, err := http.Get(fmt.Sprintf("http://127.0.0.1:3333/%v.json", name))
+	if err != nil {
+		//TODO Error Handling
+		log.Fatal(err)
+	}
+
+	log.Println(resp.Body)
+}
+
+func (a *ApplicationRepository) Install(name string) {
+
+}
+func (a *ApplicationRepository) Uninstall(name string) {
+
+}
+func (a *ApplicationRepository) Update(name string) {
+
 }

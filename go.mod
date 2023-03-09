@@ -4,7 +4,9 @@ go 1.20
 
 require (
 	github.com/gofiber/fiber/v2 v2.42.0
+	github.com/judwhite/go-svc v1.2.1
 	github.com/shirou/gopsutil v3.21.11+incompatible
+	golang.org/x/sys v0.2.0
 )
 
 require (
@@ -27,5 +29,4 @@ require (
 	github.com/valyala/fasthttp v1.44.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
-	golang.org/x/sys v0.2.0 // indirect
 )

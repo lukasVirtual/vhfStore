@@ -3,8 +3,7 @@ package application
 import "github.com/gofiber/fiber/v2"
 
 func Routes(app fiber.Router) {
-	appGroup := app.Group("app")
+	appGroup := app.Group("/app")
 
-	appGroup.Get()
-
+	appGroup.Get("/", func(c *fiber.Ctx) error { return nil })
 }
