@@ -1,13 +1,21 @@
 package main
 
 import (
-	"log"
+	"os"
 
+	log "github.com/sirupsen/logrus"
 	"www.github.com/vhfStore/internals/handler"
 	"www.github.com/vhfStore/internals/router"
 	application "www.github.com/vhfStore/internals/usecases/Application"
 	"www.github.com/vhfStore/utils"
 )
+
+func init() {
+	log.SetOutput(os.Stdout)
+	// log.SetFormatter(&log.JSONFormatter{})
+
+	log.SetLevel(log.DebugLevel)
+}
 
 func main() {
 	utils.GetSystemInformation()

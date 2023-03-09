@@ -2,9 +2,10 @@ package application
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type ApplicationInterface interface {
