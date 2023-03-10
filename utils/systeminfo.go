@@ -12,6 +12,9 @@ import (
 	"github.com/shirou/gopsutil/mem"
 )
 
+// When the Service is first started we gather information
+// of the client which are going to be send to the server
+// where it gets stored in a sqlite db
 func GetSystemInformation() error {
 	host, err := host.Info()
 	cpu, err := cpu.Info()
@@ -27,6 +30,7 @@ func GetSystemInformation() error {
 	// log.Println(test)
 
 	sys := struct {
+		UID             string
 		Hostname        string
 		OS              string
 		PlatformVersion string
@@ -34,6 +38,7 @@ func GetSystemInformation() error {
 		RAM             uint64
 		Disk            uint64
 	}{
+		UID:             host.HostID,
 		Hostname:        host.Hostname,
 		OS:              host.OS,
 		PlatformVersion: host.PlatformVersion,

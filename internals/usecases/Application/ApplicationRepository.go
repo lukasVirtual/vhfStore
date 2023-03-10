@@ -22,7 +22,11 @@ func New() *ApplicationRepository {
 	return &ApplicationRepository{}
 }
 
+// Gethers all information of all available Applications
+// for the gui to display. Currently fetches JSON file.
 func (a *ApplicationRepository) FetchCatalog() {
+	log.Debug("ApplicationRepository::FetchCatalog")
+
 	http.Get("http://127.0.0.1:3333/api/prepare")
 	resp, err := http.Get("http://127.0.0.1:8000/infos.json")
 	if err != nil {
@@ -37,9 +41,9 @@ func (a *ApplicationRepository) FetchCatalog() {
 	}
 
 	log.Println(data, resp)
-
 }
 
+// Downloads a single Application through choosing the right download strategy
 func (a *ApplicationRepository) Download(name string) {
 	resp, err := http.Get(fmt.Sprintf("http://127.0.0.1:3333/%v.json", name))
 	if err != nil {
@@ -53,9 +57,11 @@ func (a *ApplicationRepository) Download(name string) {
 func (a *ApplicationRepository) Install(name string) {
 
 }
+
 func (a *ApplicationRepository) Uninstall(name string) {
 
 }
+
 func (a *ApplicationRepository) Update(name string) {
 
 }

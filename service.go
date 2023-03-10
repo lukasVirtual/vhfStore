@@ -20,11 +20,14 @@ func test_main() {
 	}
 }
 
+// Starts before the program starts and after it
+// determines if it runs in a service env or not.
 func (p *program) Init(env svc.Environment) error {
 	log.Printf("is win service ? %v\n", env.IsWindowsService())
 	return nil
 }
 
+// Run's when progam ist started
 func (p *program) Start() error {
 	p.quit = make(chan struct{})
 

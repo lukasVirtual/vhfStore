@@ -10,6 +10,7 @@ import (
 	"www.github.com/vhfStore/utils"
 )
 
+// Initializes the logrus logger
 func init() {
 	log.SetOutput(os.Stdout)
 	// log.SetFormatter(&log.JSONFormatter{})
