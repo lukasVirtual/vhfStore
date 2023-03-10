@@ -8,7 +8,7 @@ import (
 
 func (h *Handler) Register(app *fiber.App) {
 	log.Debug("Handler::Register Routes")
-	group := app.Group("/api/v1")
+	v1 := app.Group("/api/v1")
 
-	application.Routes(group)
+	application.Routes(v1)
 }
