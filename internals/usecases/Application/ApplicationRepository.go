@@ -43,8 +43,9 @@ func (a *ApplicationRepository) FetchCatalog() {
 	log.Println(data, resp)
 }
 
-// Downloads a single Application through choosing the right download strateg
+// Downloads a single Application through choosing the right download strategy
 func (a *ApplicationRepository) Download(name string) {
+	log.Debug("ApplicationRepository::Download")
 	resp, err := http.Get(fmt.Sprintf("http://127.0.0.1:3333/%v.json", name))
 	if err != nil {
 		//TODO Error Handling
@@ -56,13 +57,13 @@ func (a *ApplicationRepository) Download(name string) {
 
 // Installs the Application with multiple
 func (a *ApplicationRepository) Install(name string) {
-
+	log.Debug("ApplicationRepository::Install")
 }
 
 func (a *ApplicationRepository) Uninstall(name string) {
-
+	log.Debug("ApplicationRepository::Uinstall")
 }
 
 func (a *ApplicationRepository) Update(name string) {
-
+	log.Debug("ApplicationRepository::Update")
 }
