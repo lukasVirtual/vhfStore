@@ -1,10 +1,10 @@
 package main
 
 import (
-	"log"
 	"sync"
 
 	"github.com/judwhite/go-svc"
+	log "github.com/sirupsen/logrus"
 )
 
 type program struct {
@@ -23,7 +23,7 @@ func test_main() {
 // Starts before the program starts and after it
 // determines if it runs in a service env or not.
 func (p *program) Init(env svc.Environment) error {
-	log.Printf("is win service ? %v\n", env.IsWindowsService())
+	log.Infof("is win service ? %v\n", env.IsWindowsService())
 	return nil
 }
 
@@ -33,9 +33,9 @@ func (p *program) Start() error {
 
 	p.wg.Add(1)
 	go func() {
-		log.Println("Starting...")
+		log.Debugln("Starting...")
 		<-p.quit
-		log.Println("Quit signal received...")
+		log.Debugln("Quit signal received...")
 		p.wg.Done()
 	}()
 
@@ -43,9 +43,9 @@ func (p *program) Start() error {
 }
 
 func (p *program) Stop() error {
-	log.Println("Stopping..")
+	log.Debugln("Stopping..")
 	close(p.quit)
 	p.wg.Wait()
-	log.Println("Stopped.")
+	log.Debugln("Stopped.")
 	return nil
 }
