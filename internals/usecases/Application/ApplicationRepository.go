@@ -40,6 +40,7 @@ func (a *ApplicationRepository) FetchCatalog() {
 		log.Fatal(err)
 	}
 
+
 	log.Println(data, resp)
 }
 
