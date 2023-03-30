@@ -9,17 +9,6 @@ const darkTheme = createTheme({
   },
 });
 
-const tests: string[] = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "4",
-  "4",
-  "4",
-  "4",
-];
-
 const res = await fetch("http://127.0.0.1:8080/getApps")
 const apps: [] = await res.json()
 console.log(apps)
